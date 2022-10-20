@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quik_sort/models/member_data.dart';
+import 'package:quik_sort/widgets/my_drawer.dart';
 import 'package:quik_sort/widgets/team_lead_item.dart';
 
 class Aboutus extends StatelessWidget {
@@ -12,6 +13,7 @@ class Aboutus extends StatelessWidget {
       appBar: AppBar(
         title: Text('About Us'),
       ),
+      // drawer: MyDrawer(DrawerItem.Aboutus),
       body: ListView(
         children: [
           Stack(children: [

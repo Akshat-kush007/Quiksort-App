@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "692361148977",
+    "project_id": "quiksort-dc2eb",
+    "storage_bucket": "quiksort-dc2eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692361148977:android:dd7d4e5032931f4398f310",
+        "android_client_info": {
+          "package_name": "com.example.quik_sort"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692361148977-pc71l460sr13pbsmsj3ck830inclmv68.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0OCoLmsW3ooSydoKlBTEgeeG9UYczrNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "692361148977-pc71l460sr13pbsmsj3ck830inclmv68.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
