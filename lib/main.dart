@@ -2,7 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quik_sort/providers/auth.dart';
-import 'package:quik_sort/screens/home_screen.dart';
+import 'package:quik_sort/screens/event_description.dart';
+import 'package:quik_sort/screens/drawer_tabs/home_tab.dart';
+import 'package:quik_sort/screens/drawer_tabs/login_tab.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,12 +21,18 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: ((context) => Auth()),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'QuikSort',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.purple,
         ),
-        home: HomeScreen(),
+        // home: HomeScreen(),
+        routes: {
+          '/': ((context) => HomeScreen()),
+          // EventDescription.routeName: ((context) => EventDescription()),
+          LogInScreen.routeName: ((context) => LogInScreen()),
+          // '/': ((context) => HomeScreen()),
+        },
       ),
     );
   }

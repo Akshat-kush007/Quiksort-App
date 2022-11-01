@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quik_sort/models/member_data.dart';
 import 'package:quik_sort/widgets/my_drawer.dart';
-import 'package:quik_sort/widgets/team_lead_item.dart';
+import 'package:quik_sort/widgets/members_card.dart';
 
 class Aboutus extends StatelessWidget {
   static const routName = 'aboutus';
@@ -100,14 +100,13 @@ class Aboutus extends StatelessWidget {
             color: Colors.grey,
             thickness: 2,
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(left: 12, top: 8),
             child: Text(
               'Team Leads',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                // decoration: TextDecoration.underline
               ),
             ),
           ),
@@ -120,16 +119,15 @@ class Aboutus extends StatelessWidget {
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: ListView(
+            child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              children: [
-                TeamLead(size: size, desc: TeamLeadList[0]),
-                TeamLead(size: size, desc: TeamLeadList[1]),
-                TeamLead(size: size, desc: TeamLeadList[2])
-              ],
-            ),
+              itemCount: TeamLeadList.length,
+              itemBuilder: ((context, index) {
+                return MembersCard(size: size, desc: TeamLeadList[index]);
+              }), 
+            )
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(left: 12, top: 8),
             child: Text(
               'Society Members',
@@ -149,16 +147,15 @@ class Aboutus extends StatelessWidget {
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: ListView(
+            child:ListView.builder(
               scrollDirection: Axis.horizontal,
-              children: [
-                TeamLead(size: size, desc: TeamLeadList[0]),
-                TeamLead(size: size, desc: TeamLeadList[1]),
-                TeamLead(size: size, desc: TeamLeadList[2])
-              ],
-            ),
+              itemCount: TeamLeadList.length,
+              itemBuilder: ((context, index) {
+                return MembersCard(size: size, desc: TeamLeadList[index]);
+              }), 
+            )
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(left: 12, top: 8),
             child: Text(
               'Support-Teachers',
@@ -178,14 +175,13 @@ class Aboutus extends StatelessWidget {
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: ListView(
+            child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              children: [
-                TeamLead(size: size, desc: TeamLeadList[0]),
-                TeamLead(size: size, desc: TeamLeadList[1]),
-                TeamLead(size: size, desc: TeamLeadList[2])
-              ],
-            ),
+              itemCount: TeamLeadList.length,
+              itemBuilder: ((context, index) {
+                return MembersCard(size: size, desc: TeamLeadList[index]);
+              }), 
+            )
           ),
           Divider(
             indent: size.width * 0.1,
@@ -212,8 +208,13 @@ class Aboutus extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).primaryColor,),),
-                  trailing: Container(height: 40,width: 40,),
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              trailing: const SizedBox(
+                height: 40,
+                width: 40,
+              ),
             ),
           ),
           Padding(
@@ -235,8 +236,13 @@ class Aboutus extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).primaryColor,),),
-                  trailing: Container(height: 40,width: 40,),
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              trailing: const SizedBox(
+                height: 40,
+                width: 40,
+              ),
             ),
           ),
           Padding(
@@ -258,11 +264,15 @@ class Aboutus extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).primaryColor,),),
-                  trailing: Container(height: 40,width: 40,),
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              trailing: const SizedBox(
+                height: 40,
+                width: 40,
+              ),
             ),
           ),
-          
         ],
       ),
     );

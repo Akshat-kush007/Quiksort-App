@@ -1,16 +1,30 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Auth with ChangeNotifier{
   //varibler==================================
-  bool _isSignIn=false;
+  String? _userName=null;
+  String? _email=null;
+  String? _imageUrl=null;
+
 
   //providers=================================
   bool get auth{
-    return _isSignIn;
+    return _userName != null;
   }
 
+  String get userName{
+    return _userName!;
+  }
+  String get email{
+    return _email!;
+  }
+  String get imageUrl{
+    return _imageUrl!;
+  }
   GoogleSignIn _googleSignIn = GoogleSignIn();
 
   //Functions==================================
@@ -18,7 +32,8 @@ class Auth with ChangeNotifier{
     try {
       final signInInfo = await _googleSignIn.signIn();
       if (signInInfo == null) {
-        throw Exception('No SignIn Info');
+        return;
+        // throw Exception('No-SignIn-Info');
       }
       final userData = await signInInfo.authentication;
       final credentials = GoogleAuthProvider.credential(
@@ -26,13 +41,24 @@ class Auth with ChangeNotifier{
         idToken: userData.idToken,
       );
 
-      await FirebaseAuth.instance.signInWithCredential(credentials);
+      final Instance=await FirebaseAuth.instance.signInWithCredential(credentials);
+      final userInfo=Instance.user;
+      //Check Instance.authcredential for token
       
-      _isSignIn=true;
+        _userName=userInfo!.displayName.toString();
+        _email=userInfo.email.toString();
+        _imageUrl=userInfo.photoURL.toString();
+        // print(_userName);
+        // print(_email);
+        // print(_imageUrl);
+      // print('AddInfo : ${Instance.additionalUserInfo}');
+      // print('CredInfo : ${Instance.credential}');
+      // print('UserInfo : ${Instance.user}');
+      
       notifyListeners();
     } catch (err) {
-      print('Error in sigin function : ');
-      print(err);
+      // print('Error in sigin function : ');
+      // print(err);
       rethrow;
     }
   }
@@ -42,7 +68,9 @@ class Auth with ChangeNotifier{
       await _googleSignIn.disconnect();
       FirebaseAuth.instance.signOut();
 
-      _isSignIn=false;
+      _userName=null;
+      _email=null;
+      _imageUrl=null;
       notifyListeners();
     }catch(err){
       print('Error in signout function : ');

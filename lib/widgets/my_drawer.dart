@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quik_sort/screens/about.dart';
-import 'package:quik_sort/screens/home_screen.dart';
-import 'package:quik_sort/screens/login_screen.dart';
+import 'package:quik_sort/screens/drawer_tabs/about_tab.dart';
+import 'package:quik_sort/screens/drawer_tabs/admin_tab.dart';
+import 'package:quik_sort/screens/drawer_tabs/home_tab.dart';
+import 'package:quik_sort/screens/drawer_tabs/login_tab.dart';
 import 'package:quik_sort/screens/profile.dart';
 
 import '../providers/auth.dart';
@@ -16,7 +17,7 @@ enum DrawerItem {
 class MyDrawer extends StatelessWidget {
   final DrawerItem _drawerItem;
   MyDrawer(this._drawerItem);
-  bool _isLogin = false;
+  bool _isLogin = true;
   bool _isAdmin = true;
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class MyDrawer extends StatelessWidget {
                       'assets/images/p2.jpg',
                     ),
                     fit: BoxFit.cover)),
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +57,7 @@ class MyDrawer extends StatelessWidget {
           //Drawer list==================================================
           ListTile(
             selected: _drawerItem == DrawerItem.Home,
-            leading: Icon(Icons.home),
+            leading: const Icon(Icons.home),
             title: const Text(
               'Home',
             ),
@@ -126,11 +127,7 @@ class MyDrawer extends StatelessWidget {
             // trailing: ,
             onTap: (() {
               Navigator.of(context).pop();
-              Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-                return auth.auth
-                    ? LogInScreen(LogIn.logout)
-                    : LogInScreen(LogIn.login);
-              }));
+              Navigator.of(context).pushNamed(LogInScreen.routeName);
             }),
           ),
           const Divider(
@@ -148,7 +145,9 @@ class MyDrawer extends StatelessWidget {
               ),
               trailing: const Icon(Icons.navigate_next),
               // trailing: ,
-              onTap: (() {}),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Admin_Screen()));
+              },
             ),
         ],
       ),

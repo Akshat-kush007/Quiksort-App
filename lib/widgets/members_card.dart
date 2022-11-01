@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import '../models/description.dart';
+import 'package:quik_sort/screens/members_details_screen.dart';
+import '../models/members_description.dart';
 
-class TeamLead extends StatelessWidget {
+class MembersCard extends StatelessWidget {
   final Size size;
-  final Description desc;
+  final Members_Description desc;
 
-  TeamLead({required this.size, required this.desc});
+  MembersCard({required this.size, required this.desc});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class TeamLead extends StatelessWidget {
       child: Column(
         children: [
           ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(15),
                 topLeft: Radius.circular(15),
               ),
@@ -26,30 +27,34 @@ class TeamLead extends StatelessWidget {
                 width: size.width * 0.45,
                 fit: BoxFit.cover,
               )),
-          Container(
+          SizedBox(
             width: size.width * 0.45,
             child: Column(children: [
               FittedBox(
                   child: Text(
                 desc.name,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               )),
               FittedBox(
                   child: Text(
                 desc.title,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
                   decoration: TextDecoration.underline
                   ),
               )),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context)=>MembersDetailsScreen(desc: desc))
+                    );
+                  },
                   style: TextButton.styleFrom(
                       // maximumSize: Size(10, 10)
                       ),
-                  child: Text('Know more >>')),
+                  child: const Text('Know more >>')),
             ]),
           )
         ],

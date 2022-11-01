@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lottie/lottie.dart';
-import 'package:quik_sort/screens/event_screen.dart';
-import 'package:quik_sort/screens/explore_screen.dart';
-import 'package:quik_sort/screens/quiksort_screen.dart';
+import 'package:quik_sort/screens/pages/event_page.dart';
+import 'package:quik_sort/screens/pages/explore_page.dart';
+import 'package:quik_sort/screens/pages/quiksort_page.dart';
 import 'package:quik_sort/widgets/my_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -53,10 +53,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Quik Sort"),
+        title: const Text("QuikSort"),
       ),
       drawer: MyDrawer(DrawerItem.Home),
-      //Body======================================================
+      //Body=============================================================
       // body: _pages[_curentPageIndex],
       body: _isLoading
           ? Center(child: Lottie.asset('assets/animations/load.json'))
@@ -96,9 +96,9 @@ class NoConnecionWidget extends StatelessWidget {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Lottie.asset("assets/animations/error.json",
+        Lottie.asset("assets/animations/nointernet.json",
             width: double.infinity, fit: BoxFit.cover),
-        Text(
+        const Text(
           "No Internet Connection",
           style: TextStyle(fontSize: 20),
         ),
@@ -106,8 +106,8 @@ class NoConnecionWidget extends StatelessWidget {
             onPressed: () {
               _checkInternet();
             },
-            icon: Icon(Icons.refresh),
-            label: Text('Reload'))
+            icon: const Icon(Icons.refresh),
+            label: const Text('Reload'))
       ],
     ));
   }
